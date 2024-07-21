@@ -1,0 +1,92 @@
+body{
+    display: flax;
+    justify-content: center;
+    padding: 0px 10px;
+}
+
+.container{
+    max-width: 768;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.code-container{
+    position: relative;
+    width: auto;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.title-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #d3d3d3;
+}
+
+.code-title{
+    color: #1d1d1d;
+    font-weight: bold;
+}
+
+.copy-button{
+    background-color: #61afef;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.code-botton:hover{
+    background-color: #4e8cd4;
+}
+
+.code-block {
+    color: #ffffff;
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+#copy-notification1 {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+#copy-notification2 {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+#copy-notification3 {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+html{
+    font-family: "Roboto, sans-serif";
+    font-weight: 400;
+    font-size: normal;
+}

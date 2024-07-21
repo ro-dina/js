@@ -1,0 +1,231 @@
+<html lang = "jp">
+<head>
+    <meta charset="utf-8">
+    <title>Page A</title>
+    <link rel="stylesheet" href="a.css">
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript入門</h1>
+        <h2>導入</h2>
+        <p>JavaScriptについて学んでいきます。<br>
+            単純に学んでもつまらないので簡単なやることリストを作りながら学んでいきます。<br>
+            ChatGPTの提案でやることリストを作ることにしたので不明瞭な箇所はGPTに聞いてもいいと思います。<br>
+        </p>
+
+        <h2>JavaScriptとは</h2>
+        <p>
+            まず簡単にJavaScriptとはスクリプト言語で、動的な機能を追加してくれます。
+            画像を動かすなども可能になります。
+        </p>
+
+        <h2>Step0:htmlとcssを作る</h2>
+        <P>
+            まずはhtmlとcssを使い基本的なUIを作ります。今回学習するのはJavaScriptですので多くは省略させていただきます。
+        </P>
+        <div class = "code-container">
+            <div class = "title-bar">
+                <span class = "code-title">html</span>
+                    <button class = "copy-button" onclick = "copyCode('code1')">Copy</button>
+                </div>
+            <pre class = "code-block"><code id = "code1">&lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset = "UTF-8"&gt;
+            &lt;link rel="stylesheet" href="test.css"&gt;
+            &lt;title&gt;やることリスト&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;div class = "container"&gt;
+                &lt;h1&gt;やることリスト&lt;/h1&gt;
+                &lt;input type = "text" id = "taskInput" placeholder = "タスクを追加..."&gt;
+                &lt;button id = "addTaskButton"&gt;タスク追加&lt;/button&gt;
+                &lt;ul id = "taskList"&gt;&lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;script src = "test.js"&gt;&lt;/script&gt;
+        &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <div id = "copy-notification1" class="hidden">Code copied to clipboard!</div>
+    </div>
+    <p>
+        これがhtmlです。14行目でJavaScriptを指定しています。今回は名前をtestとしていますが任意のもので大丈夫です。<br>
+    </p>
+
+    <div class = "code-container">
+        <div class = "title-bar">
+            <span class = "code-title">css</span>
+                <button class = "copy-button" onclick = "copyCode('code2')">Copy</button>
+            </div>
+        <pre class = "code-block"><code id = "code2">.container {
+    max-width:400px; 
+    margin: 0 auto;
+    padding: 20px;}
+    
+ul {list-style: none;
+    padding: 0;}
+    
+li {padding: 10px; 
+    background: #f4f4f4; 
+    margin-bottom: 10px;}
+                
+button {margin-left: 10px;}</code></pre>
+        <div id = "copy-notification2" class = "hidden">Code copied to clipboard!</div>
+    </div>
+    <p>
+        これがcssです。
+    </p>
+
+    <h2>Step1:JavaScriptを作る</h2>
+
+    <div class = "code-container">
+        <div class = "title-bar">
+            <span class = "code-title">JavaScript</span>
+                <button class = "copy-button" onclick = "copyCode('code3')">Copy</button>
+            </div>
+        <pre class = "code-block"><code id = "code3">const taskInput = document.getElementById('taskInput');
+const addTaskButton = document.getElementById('addTaskButton');
+const taskList = document.getElementById('taskList');
+
+function addTask() {
+    const taskText = taskInput.value.trim();
+    if (taskText === '') return;
+
+    const li = document.createElement('li');
+    li.textContent = taskText;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.onclick = function() {
+        taskList.removeChild(li);
+        saveTasks();
+    };
+    li.appendChild(deleteButton);
+
+    taskList.appendChild(li);
+
+    taskInput.value = '';
+
+    saveTasks();
+}
+
+function saveTasks() {
+    const tasks = [];
+    taskList.querySelectorAll('li').forEach(li => {
+        tasks.push(li.textContent.replace('Delete', '').trim());
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(taskText => {
+        const li = document.createElement('li');
+        li.textContent = taskText;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function() {
+            taskList.removeChild(li);
+            saveTasks();
+        };
+        li.appendChild(deleteButton);
+
+        taskList.appendChild(li);
+    });
+}
+
+addTaskButton.addEventListener('click', addTask);
+
+loadTasks();</code></pre>
+        <div id = "copy-notification3" class = "hidden">Code copied to clipboard!</div>
+    </div>
+
+    <p>
+        結論から書くとこのようになりますが順番に見ていきます。<br>
+        <h3>変数に要素を代入</h3>
+        まず最初の三行、すべて<br>
+        "const XXX = document.getElementById('YYY');"<br>
+        となっていると思います。これはXXXという変数に、htmlのidがYYYである&lt;input&gt;要素を取得し参照を保存しています。
+        htmlを書いた際にidを指定したと思います。例:10行目
+    </p>
+
+    <p>
+        <h3>関数、function addTask</h3>
+        次に"function addTask"は新しいタスクを追加するための関数です。<br>
+        関数の定義は<br>
+        <br>
+        function XXXX(){<br>
+        <br>
+        }<br>
+        <br>
+        というように記述します。addTask関数とは、<br>
+        <p class = kazyougaki>
+            ・空の入力を無視する<br>
+            ・新しいリストアイテムの作成<br>
+            ・削除ボタンをつけてリストアイテムに追加する、<br>
+            ・リストに新しいタスクを追加する<br>
+            ・入力フィールドをクリアする<br>
+            ・タスクを保存する<br>
+        </p>
+        というものです。<br>
+        まずこの関数の最初の"const taskText = taskInput.value.trim();"
+        はtaskInputの値を取得し、前後の空白を消してtaskTextの変数に保存しています。<br>
+        <p class = codeex>
+            const:変数宣言で、宣言された変数の値は再代入できません。<br>
+            value:htmlの&lt;input&gt;要素の値を取得します。今回であればユーザーが入れた文字です。<br>
+            trim():これで前後の空白を消去しています。<br>
+        </p>
+
+        <h4>空の入力を無視する</h4>
+        次のif文は入力が空の場合はボタンを押しても追加されないようにしています。if文の書き方は次のようになります。<br>
+        <p class = codeex>
+            if (条件1){<br>
+            <br>
+            }else if (条件2){<br>
+            <br>
+            }else{<br>
+            <br>
+            }
+        </p>
+        今回はelseやelse ifは使いません。taskTextが空(' ')と等しいかを見て等しければreturnで戻り値なしで関数を終了しています。<br>
+        <br>
+        <h4>新しいリストアイテムの作成</h4>
+        const li = document.createElement('li');は新しいリスト('li')を作成しています。<br>
+        li.textContent = taskText;はリストアイテムのコンテンツとしてtaskTextの値を設定しています。<br>
+        <h4>消去ボタンの作成</h4>
+        const deleteButton = document.createElement('button');では消去ボタンの元を作成しています。
+        しかしこれだけだとただのボタンが生成されるので次の行でテキストをつけます。<br>
+        deleteButton.textContent = 'Delete';<br>
+        <h4>消去ボタンの動作定義</h4>
+        tasklist.removeChild(li);リストからリストアイテムを消去します。<br>
+        saveTasks();はこの後に作成するリストを保存するための関数を呼び出し、消去した後に保存しています。<br>
+        li.appendChild(deleteButton);とtaskList.appendChild(li);ではリストアイテムに消去ボタンと新しいリストアイテムを追加しています。<br>
+        taskInput.value = '';は入力フィールドを空にしています。<br>
+        saveTasks();はタスクを保存しています。
+    </p>
+
+    <h3>タスクを保存する関数</h3>
+    <p>
+        先ほどのタスクを保存する関数を作成していきます。<br>
+        function saveTasks()はaddTaskの時と同じように関数を定義しています。<br>
+        cont tasks = [];は空の配列を作成しています。pythonみたいですね。<br>
+        taskListl.querSelectorAll('li').forEach(li => {XXX});はリスト内すべての&lt;li&gt;要素に対して、XXXに記述している操作を行います。<br>
+        tasks.push(li.textContent.replace('Delete', '').trim());はリストアイテムのテキストからDeleteを削除して前後の空白を取り除いてtasks配列に追加しています。<br>
+        localStorage.setItem('tasks', JSON.stringify(tasks));はtasks配列をlocalStorageに保存しています。
+        また保存する前にJSON文字列(データを交換するための軽量なフォーマット)に変換しています。<br>
+    </p>
+
+    <h3>タスクを読み込む関数</h3>
+    <p>
+        function loadTasks();関数定義です。<br>
+        const tasls = JSON.parse(localStorage.getItem('tasks')) || {};<br>
+        これはlocalStorageから保存されたtasksを取得し、配列に変換しています。もし保存されたタスクがなければ空の配列を使用しています。
+        XXXX || {}の形でXXXXがfalseやnullなどであれば右の式を使う、C言語のif文のような処理です。
+    </p>
+
+
+
+
+    <script src="a.js"></script>
+
+</body>
+</html>
