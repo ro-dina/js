@@ -219,11 +219,17 @@ loadTasks();</code></pre>
         function loadTasks();関数定義です。<br>
         const tasls = JSON.parse(localStorage.getItem('tasks')) || {};<br>
         これはlocalStorageから保存されたtasksを取得し、配列に変換しています。もし保存されたタスクがなければ空の配列を使用しています。
-        XXXX || {}の形でXXXXがfalseやnullなどであれば右の式を使う、C言語のif文のような処理です。
+        XXXX || {}の形でXXXXがfalseやnullなどであれば右の式を使う、C言語のif文のような処理ですね。<br>
+        tasks.forEach(task => {XXXX});ここはXXXXの操作を行います。このXXXXとは新しいリストアイテムの作成と同じ手順です。<br>
     </p>
 
-
-
+    <h3>最後の2行</h3>
+    <p>
+        addTaskButton.addEventListener('click',addTask);ではaddTaskButtonがクリックされるとaddTask関数を実行します。<br>
+        これをイベントリスナーといいボタンがクリックされたことを検出する以外にも、
+        マウスが要素の上に置かれる、キー入力といったようなイベントも検知できます。<br>
+        loadTasks();はページが読み込まれたときに、保存されたタスクを読み込んでいます。
+    </p>
 
     <script src="a.js"></script>
 
