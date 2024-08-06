@@ -1,7 +1,7 @@
 <html lang = "jp">
 <head>
     <meta charset="utf-8">
-    <title>Page A</title>
+    <title>JavaScript入門</title>
     <link rel="stylesheet" href="a.css">
 </head>
 <body>
@@ -150,22 +150,23 @@ loadTasks();</code></pre>
 
     <p>
         <h3>関数、function addTask</h3>
-        次に"function addTask"は新しいタスクを追加するための関数です。<br>
+        やることリストを作るためには、タスクを追加する機能が必要ですよね。<br>
+        5行目からの"function addTask"は新しいタスクを追加するための関数です。<br>
         関数の定義は<br>
         <br>
         function XXXX(){<br>
         <br>
         }<br>
         <br>
-        というように記述します。addTask関数とは、<br>
-        <p class = kazyougaki>
-            ・空の入力を無視する<br>
-            ・新しいリストアイテムの作成<br>
-            ・削除ボタンをつけてリストアイテムに追加する、<br>
-            ・リストに新しいタスクを追加する<br>
-            ・入力フィールドをクリアする<br>
-            ・タスクを保存する<br>
-        </p>
+        というように記述します。addTask関数は、<br>
+        <ul>
+            <li>空の入力を無視する</li>
+            <li>新しいリストアイテムの作成</li>
+            <li>削除ボタンをつけてリストアイテムに追加する</li>
+            <li>リストに新しいタスクを追加する</li>
+            <li>入力フィールドをクリアする</li>
+            <li>タスクを保存する</li>
+        </ul>
         というものです。<br>
         まずこの関数の最初の"const taskText = taskInput.value.trim();"
         はtaskInputの値を取得し、前後の空白を消してtaskTextの変数に保存しています。<br>
@@ -230,6 +231,28 @@ loadTasks();</code></pre>
         マウスが要素の上に置かれる、キー入力といったようなイベントも検知できます。<br>
         loadTasks();はページが読み込まれたときに、保存されたタスクを読み込んでいます。
     </p>
+
+    <h3>完成したウェブページ</h3>
+    <p>
+        このプログラムを書くと最終的にこのようなウェブページができると思います。
+    </p>
+    <img src="To-do-listA.png" alt = "To do list" width="350" height="300">
+    <img src="To-do-listB.png" alt = "To do list" width="370" height="300">
+    
+    <h2>最後に</h2>
+    <p>
+        これを実際に動かしてみると、ウェブページを一度離れても登録しているタスクは維持されます。<br>
+        JavaScriptを使うことで、このようにサイトの機能を増やすことができます。<br>
+        先述した通り画像を動かしたり、マウスカーソルの位置を取得するなど様々なことを実現できます。<br>
+        このサイトのプログラムをコピーできる箇所でもJavaScriptが使用されています。<br>
+        ぜひJavaScriptを使用してより面白いウェブページを作ってみてください。
+    </p>
+
+    <h2>参考</h2>
+    <ul>
+        <li><a href="https://chatgpt.com/">Chat GPT</a></li>
+        <li><a href="https://paiza.jp/works">paizaラーニング</a></li>
+    </ul>
 
     <script src="a.js"></script>
 

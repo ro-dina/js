@@ -1,0 +1,16 @@
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset = "UTF-8"&gt;
+        &lt;link rel="stylesheet" href="test.css"&gt;
+        &lt;title&gt;やることリスト&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class = "container"&gt;
+            &lt;h1&gt;やることリスト&lt;/h1&gt;
+            &lt;input type = "text" id = "taskInput" placeholder = "タスクを追加..."&gt;
+            &lt;button id = "タスク追加ボタン"&gt;タスク追加&lt;/button&gt;
+            &lt;ul id = "taskList"&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;script src = "test.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
